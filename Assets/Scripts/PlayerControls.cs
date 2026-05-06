@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerControls : MonoBehaviour
@@ -13,9 +14,19 @@ public class PlayerControls : MonoBehaviour
     private Rigidbody rb;
     private Vector3 moveDirection;
 
+    private Keyboard keyboard;
+    private KeyControl left, right, forward, backward;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        // set keyboard controls
+        keyboard = Keyboard.current;
+        left = keyboard.aKey;
+        right = keyboard.dKey;
+        forward = keyboard.wKey;
+        backward = keyboard.sKey;
 
         // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,6 +39,7 @@ public class PlayerControls : MonoBehaviour
         RotatePlayer();
     }
 
+    // for physics!
     void FixedUpdate()
     {
         MovePlayer();
@@ -37,31 +49,25 @@ public class PlayerControls : MonoBehaviour
     {
         float x = 0f, z = 0f;
 
-        // wasd movement
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard.aKey.isPressed) x -= 1f;
-        if (keyboard.dKey.isPressed) x += 1f;
-        if (keyboard.wKey.isPressed) z += 1f;
-        if (keyboard.sKey.isPressed) z -= 1f;
+        // movement
+        if (left.isPressed) x -= 1f;
+        if (right.isPressed) x += 1f;
+        if (forward.isPressed) z += 1f;
+        if (backward.isPressed) z -= 1f;
 
         Transform cam = Camera.main.transform;
 
-        Vector3 forward = cam.forward;
-        Vector3 right = cam.right;
+        Vector3 forwardAxis = cam.forward;
+        Vector3 rightAxis = cam.right;
 
-        forward.y = 0f;
-        right.y = 0f;
+        forwardAxis.y = 0f;
+        rightAxis.y = 0f;
 
-        forward.Normalize();
-        right.Normalize();
+        forwardAxis.Normalize();
+        rightAxis.Normalize();
 
-        moveDirection = forward * z + right * x;
+        moveDirection = forwardAxis * z + rightAxis * x;
         moveDirection.Normalize();
-    }
-
-    void MovePlayer()
-    {
-        rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
     }
 
     void RotatePlayer()
@@ -74,5 +80,10 @@ public class PlayerControls : MonoBehaviour
             targetRotation,
             rotationSpeed * Time.deltaTime
         );
+    }
+
+    void MovePlayer()
+    {
+        rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
     }
 }

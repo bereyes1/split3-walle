@@ -550,7 +550,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &763087297
 MonoBehaviour:
@@ -564,6 +564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66939443e183b6f4dbdac0f6a7598a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTrashInteract
+  raycastDebug: 0
+  maxDistance: 25
   layersToHit:
     serializedVersion: 2
     m_Bits: 64
