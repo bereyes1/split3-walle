@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerTrashInteract : MonoBehaviour
 {
     [Header("[== RAYCAST SETTINGS ==]")]
-    public bool raycastDebug = false;
-    public float maxDistance = 25f;
-    public LayerMask layersToHit;
+    [SerializeField] private bool raycastDebug = false;
+    [SerializeField] private float maxDistance = 25f;
+    [SerializeField] private LayerMask layersToHit;
     
     private Camera cam;
     private RaycastHit hit;
@@ -16,6 +17,8 @@ public class PlayerTrashInteract : MonoBehaviour
         cam = Camera.main;
     }
 
+    // called when m1 button is down
+    // uses old unity input system
     void OnMouseDown()
     {
         castRay();
@@ -23,7 +26,8 @@ public class PlayerTrashInteract : MonoBehaviour
 
     void castRay()
     {
-        ray = new Ray(cam.transform.position, cam.transform.forward);
+        Transform camTrans = cam.transform;
+        ray = new Ray(camTrans.position, camTrans.forward);
         if (Physics.Raycast(ray, out hit, maxDistance, layersToHit))
         {
             GameObject hitObj = hit.collider.gameObject;
@@ -32,7 +36,7 @@ public class PlayerTrashInteract : MonoBehaviour
             if (raycastDebug)
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.green);
-                Debug.Log(hitObj.name + " was hit!");
+                Debug.Log(hitObj.name + " was hit from a distance of " + Vector3.Distance(camTrans.position, hitObj.transform.position));
             }
         }
         else if (raycastDebug)
@@ -43,7 +47,6 @@ public class PlayerTrashInteract : MonoBehaviour
 
     void HitObject(GameObject obj)
     {
-        Debug.Log(obj.name + " was destroyed!");
         Destroy(obj);
 
         // TODO add logic after removing from gameworld
