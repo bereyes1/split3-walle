@@ -6,11 +6,11 @@ using UnityEngine.InputSystem.Controls;
 public class PlayerControls : MonoBehaviour
 {
     [Header("[== MOVEMENT SETTINGS ==]")]
-    public float speed = 5f;
-    public float rotationSpeed = 10f;
+    [SerializeField] private float directionSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 10f;
 
     [Header("[== REFERENCES ==]")]
-    public Transform playerObj;
+    [SerializeField] private Transform playerObj;
     private Rigidbody rb;
     private Vector3 moveDirection;
 
@@ -84,6 +84,6 @@ public class PlayerControls : MonoBehaviour
 
     void MovePlayer()
     {
-        rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDirection * directionSpeed * Time.fixedDeltaTime);
     }
 }
