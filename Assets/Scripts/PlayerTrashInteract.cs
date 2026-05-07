@@ -7,10 +7,33 @@ public class PlayerTrashInteract : MonoBehaviour
     [SerializeField] private bool raycastDebug = false;
     [SerializeField] private float maxDistance = 25f;
     [SerializeField] private LayerMask layersToHit;
-    
+    [SerializeField] private InputReader inputReader;
+
     private Camera cam;
     private RaycastHit hit;
     private Ray ray;
+
+    private void OnEnable()
+    {
+        if (inputReader != null)
+        {
+            inputReader.InteractEvent += HandleInteract;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (inputReader != null)
+        {
+            inputReader.InteractEvent -= HandleInteract;
+        }
+    }
+
+    //using new input system
+    private void HandleInteract()
+    {
+        castRay();
+    }
 
     void Start()
     {
