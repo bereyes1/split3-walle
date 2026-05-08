@@ -7,9 +7,9 @@ public class PlayerTrashInteract : MonoBehaviour
     [SerializeField] private bool raycastDebug = false;
     [SerializeField] private float maxDistance = 25f;
     [SerializeField] private LayerMask layersToHit;
-    [SerializeField] private InputReader inputReader;
 
-    [Header("References")]
+    [Header("[== REFERENCES ==]")]
+    [SerializeField] private InputReader inputReader;
     [SerializeField] private Inventory playerInventory;
 
     private Camera cam;
@@ -32,7 +32,7 @@ public class PlayerTrashInteract : MonoBehaviour
         }
     }
 
-    //using new input system
+    // using new input system
     private void HandleInteract()
     {
         castRay();
@@ -45,10 +45,12 @@ public class PlayerTrashInteract : MonoBehaviour
 
     // called when m1 button is down
     // uses old unity input system
+    /*
     void OnMouseDown()
     {
         castRay();
     }
+    */
 
     void castRay()
     {
@@ -76,12 +78,12 @@ public class PlayerTrashInteract : MonoBehaviour
         if (playerInventory == null)
         {
             Debug.LogWarning("No inventory component!");
+            Debug.Log("testing...");
             Destroy(obj); //like old system
             return;
         }
 
         TrashItem trashItem = obj.GetComponent<TrashItem>();
-
         if (trashItem == null)
         {
             Debug.LogWarning(obj.name + "has no TrashItem component — cannot collect.");
