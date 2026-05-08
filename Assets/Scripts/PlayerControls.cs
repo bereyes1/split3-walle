@@ -20,6 +20,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
         
         // set keyboard controls
         keyboard = Keyboard.current;
@@ -35,14 +36,9 @@ public class PlayerControls : MonoBehaviour
 
     void Update()
     {
-        HandleInput();
-        RotatePlayer();
-    }
-
-    // for physics!
-    void FixedUpdate()
-    {
         MovePlayer();
+        RotatePlayer();
+        HandleInput();
     }
 
     void HandleInput()
@@ -84,6 +80,6 @@ public class PlayerControls : MonoBehaviour
 
     void MovePlayer()
     {
-        rb.MovePosition(rb.position + moveDirection * directionSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDirection * directionSpeed * Time.deltaTime);
     }
 }
