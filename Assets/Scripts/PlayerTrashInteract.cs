@@ -9,6 +9,9 @@ public class PlayerTrashInteract : MonoBehaviour
     [SerializeField] private LayerMask layersToHit;
     [SerializeField] private InputReader inputReader;
 
+    [Header("References")]
+    [SerializeField] private Inventory playerInventory;
+
     private Camera cam;
     private RaycastHit hit;
     private Ray ray;
@@ -68,12 +71,31 @@ public class PlayerTrashInteract : MonoBehaviour
         }
     }
 
-    void HitObject(GameObject obj)
+    private void HitObject(GameObject obj)
     {
-        Destroy(obj);
+        if (playerInventory == null)
+        {
+            Debug.LogWarning("No inventory component!");
+            Destroy(obj); //like old system
+            return;
+        }
 
-        // TODO add logic after removing from gameworld
-        // ie adding to trash counter, storing it into inv?
-        // idk, still up in the air what we do with this!
+        TrashItem trashItem = obj.GetComponent<TrashItem>();
+
+        if (trashItem == null)
+        {
+            Debug.LogWarning(obj.name + "has no TrashItem component — cannot collect.");
+            return;
+        }
+
+        if (playerInventory.Add(trashItem.Data))
+        {
+            Debug.Log("Collected: " + trashItem.Data.itemName);
+            Destroy(obj);
+        }
+        else
+        {
+            Debug.Log("Inventory full — could not collect.");
+        }
     }
 }
