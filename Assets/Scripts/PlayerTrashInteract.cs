@@ -90,7 +90,6 @@ public class PlayerTrashInteract : MonoBehaviour
 
         if (playerInventory.Add(trashItem.Data))
         {
-            Debug.Log("Collected: " + trashItem.Data.itemName);
             Destroy(obj);
         }
         else

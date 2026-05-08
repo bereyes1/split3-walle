@@ -40,6 +40,8 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     public event Action<Vector2> LookEvent;
     public event Action SprintEvent;
     public event Action InteractEvent;
+    public event Action CraftEvent;
+    public event Action PlaceEvent;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -64,6 +66,22 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
         if (context.phase == InputActionPhase.Performed)
         {
             SprintEvent?.Invoke();
+        }
+    }
+
+    public void OnCraft(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            CraftEvent?.Invoke();
+        }
+    }
+
+    public void OnPlace(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            PlaceEvent?.Invoke();
         }
     }
 }
