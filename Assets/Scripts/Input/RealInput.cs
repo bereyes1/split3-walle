@@ -129,6 +129,24 @@ namespace NewerInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Craft"",
+                    ""type"": ""Button"",
+                    ""id"": ""b180f064-e7ca-4ab1-a42b-dc7b0e42eaaf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Place"",
+                    ""type"": ""Button"",
+                    ""id"": ""5530484f-c56c-4529-ba85-5751590631a6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -338,6 +356,28 @@ namespace NewerInput
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6dcf72fd-4662-4349-90a8-9893e2c82414"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Craft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e16820f-b598-44ab-97cf-44ec650aadeb"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Place"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -929,6 +969,8 @@ namespace NewerInput
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
+            m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1026,6 +1068,8 @@ namespace NewerInput
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Sprint;
         private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Craft;
+        private readonly InputAction m_Player_Place;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -1053,6 +1097,14 @@ namespace NewerInput
             /// Provides access to the underlying input action "Player/Interact".
             /// </summary>
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Craft".
+            /// </summary>
+            public InputAction @Craft => m_Wrapper.m_Player_Craft;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Place".
+            /// </summary>
+            public InputAction @Place => m_Wrapper.m_Player_Place;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1091,6 +1143,12 @@ namespace NewerInput
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Craft.started += instance.OnCraft;
+                @Craft.performed += instance.OnCraft;
+                @Craft.canceled += instance.OnCraft;
+                @Place.started += instance.OnPlace;
+                @Place.performed += instance.OnPlace;
+                @Place.canceled += instance.OnPlace;
             }
 
             /// <summary>
@@ -1114,6 +1172,12 @@ namespace NewerInput
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @Craft.started -= instance.OnCraft;
+                @Craft.performed -= instance.OnCraft;
+                @Craft.canceled -= instance.OnCraft;
+                @Place.started -= instance.OnPlace;
+                @Place.performed -= instance.OnPlace;
+                @Place.canceled -= instance.OnPlace;
             }
 
             /// <summary>
@@ -1442,6 +1506,20 @@ namespace NewerInput
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnInteract(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Craft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnCraft(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Place" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnPlace(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
