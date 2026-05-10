@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTrashInteract : MonoBehaviour
 {
@@ -7,10 +8,15 @@ public class PlayerTrashInteract : MonoBehaviour
     [SerializeField] private bool raycastDebug = false;
     [SerializeField] private float maxDistance = 25f;
     [SerializeField] private LayerMask layersToHit;
-    [SerializeField] private InputReader inputReader;
 
-    [Header("References")]
+    [Header("[== REFERENCES ==]")]
+    [SerializeField] private InputReader inputReader;
     [SerializeField] private Inventory playerInventory;
+
+    [Header("[== CURSOR ==]")]
+    [SerializeField] private Image cursorUI;
+    [SerializeField] private Sprite normalSprite;
+    [SerializeField] private Sprite interactSprite;
 
     private Camera cam;
     private RaycastHit hit;
@@ -32,10 +38,14 @@ public class PlayerTrashInteract : MonoBehaviour
         }
     }
 
-    //using new input system
+    // using new input system
     private void HandleInteract()
     {
-        castRay();
+        GameObject hitObj = castRay();
+        if (hitObj != null)
+        {
+            HitObject(hitObj);
+        }
     }
 
     void Start()
@@ -43,32 +53,34 @@ public class PlayerTrashInteract : MonoBehaviour
         cam = Camera.main;
     }
 
-    // called when m1 button is down
-    // uses old unity input system
-    void OnMouseDown()
+    void Update()
     {
-        castRay();
+        cursorUI.sprite = (
+            castRay() != null
+            ? interactSprite
+            : normalSprite
+        );
     }
 
-    void castRay()
+    GameObject castRay()
     {
         Transform camTrans = cam.transform;
         ray = new Ray(camTrans.position, camTrans.forward);
         if (Physics.Raycast(ray, out hit, maxDistance, layersToHit))
         {
             GameObject hitObj = hit.collider.gameObject;
-            HitObject(hitObj);
-
             if (raycastDebug)
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.green);
                 Debug.Log(hitObj.name + " was hit from a distance of " + Vector3.Distance(camTrans.position, hitObj.transform.position));
             }
+            return hitObj;
         }
         else if (raycastDebug)
         {
             Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100f, Color.red);
         }
+        return null;
     }
 
     private void HitObject(GameObject obj)
@@ -76,12 +88,12 @@ public class PlayerTrashInteract : MonoBehaviour
         if (playerInventory == null)
         {
             Debug.LogWarning("No inventory component!");
+            Debug.Log("testing...");
             Destroy(obj); //like old system
             return;
         }
 
         TrashItem trashItem = obj.GetComponent<TrashItem>();
-
         if (trashItem == null)
         {
             Debug.LogWarning(obj.name + "has no TrashItem component — cannot collect.");
