@@ -42,6 +42,7 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     public event Action InteractEvent;
     public event Action CraftEvent;
     public event Action PlaceEvent;
+    public event Action CraftMenuEvent;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -82,6 +83,14 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
         if (context.phase == InputActionPhase.Performed)
         {
             PlaceEvent?.Invoke();
+        }
+    }
+
+    public void OnCraftMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            CraftMenuEvent?.Invoke();
         }
     }
 }

@@ -147,6 +147,15 @@ namespace NewerInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CraftMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6bd6acf-1b64-4079-ab52-ce868c95acf3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -378,6 +387,17 @@ namespace NewerInput
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f96331e-764e-4f2c-bb7f-3619cd2c61e7"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CraftMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -971,6 +991,7 @@ namespace NewerInput
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
             m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
+            m_Player_CraftMenu = m_Player.FindAction("CraftMenu", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1070,6 +1091,7 @@ namespace NewerInput
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Craft;
         private readonly InputAction m_Player_Place;
+        private readonly InputAction m_Player_CraftMenu;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -1105,6 +1127,10 @@ namespace NewerInput
             /// Provides access to the underlying input action "Player/Place".
             /// </summary>
             public InputAction @Place => m_Wrapper.m_Player_Place;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/CraftMenu".
+            /// </summary>
+            public InputAction @CraftMenu => m_Wrapper.m_Player_CraftMenu;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1149,6 +1175,9 @@ namespace NewerInput
                 @Place.started += instance.OnPlace;
                 @Place.performed += instance.OnPlace;
                 @Place.canceled += instance.OnPlace;
+                @CraftMenu.started += instance.OnCraftMenu;
+                @CraftMenu.performed += instance.OnCraftMenu;
+                @CraftMenu.canceled += instance.OnCraftMenu;
             }
 
             /// <summary>
@@ -1178,6 +1207,9 @@ namespace NewerInput
                 @Place.started -= instance.OnPlace;
                 @Place.performed -= instance.OnPlace;
                 @Place.canceled -= instance.OnPlace;
+                @CraftMenu.started -= instance.OnCraftMenu;
+                @CraftMenu.performed -= instance.OnCraftMenu;
+                @CraftMenu.canceled -= instance.OnCraftMenu;
             }
 
             /// <summary>
@@ -1520,6 +1552,13 @@ namespace NewerInput
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPlace(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "CraftMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnCraftMenu(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
