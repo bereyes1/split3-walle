@@ -27,9 +27,13 @@ public class CraftingUI : MonoBehaviour
         {
             cursorManager = CursorManager.Instance;
         }
-        closeButton.onClick.AddListener(() => OpenCraftMenu());
+        
         isOpen = true;
         OpenCraftMenu();
+        
+        // add listener and lock cursor
+        closeButton.onClick.AddListener(() => OpenCraftMenu());
+        cursorManager.LockCursor();
     }
 
     private void OnEnable()
