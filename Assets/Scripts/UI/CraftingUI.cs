@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CraftingUI : MonoBehaviour
 {
-    private bool isOpen;
+    private bool isOpen = false;
     private CursorManager cursorManager;
 
     [Header("[== SYSTEM REFERENCES ==]")]
@@ -25,12 +25,12 @@ public class CraftingUI : MonoBehaviour
         {
             cursorManager = CursorManager.Instance;
         }
-        
-        isOpen = true;
-        OpenCraftMenu();
+
+        // add event listener for crafting button
+        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
         
         // add listener and lock cursor
-        closeButton.onClick.AddListener(() => OpenCraftMenu());
+        closeButton.onClick.AddListener(OpenCraftMenu);
         cursorManager.LockCursor();
     }
 
@@ -74,7 +74,11 @@ public class CraftingUI : MonoBehaviour
     private void UpdatePanelText()
     {
         int count = inventory.InventoryCount;
-        trashSlot.MaterialText.text = $"{count}";
-        trashSlot.BlockText.text = $"{count / craftingSystem.TrashPerBlock}";
+        trashSlot.MaterialText.text =
+            $"{count}";
+        trashSlot.RequiredAmountText.text =
+            $"{craftingSystem.TrashPerBlock} NEEDED";
+        trashSlot.BlockText.text =
+            $"{count / craftingSystem.TrashPerBlock}";
     }
 }
