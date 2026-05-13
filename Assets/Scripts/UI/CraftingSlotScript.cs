@@ -7,7 +7,7 @@ public class CraftingSlotScript : MonoBehaviour
     [SerializeField] private CraftingSlotData craftingSlotData;
     public CraftingSlotData Data => craftingSlotData;
 
-    [Header("[== TEXT FIELDS ==]")]
+    [Header("[== TEXT REFERENCES ==]")]
     [SerializeField] private TMP_Text materialText;
     [SerializeField] private TMP_Text blockText;
     [SerializeField] private TMP_Text requiredAmountText;
@@ -15,14 +15,23 @@ public class CraftingSlotScript : MonoBehaviour
     public TMP_Text BlockText => blockText;
     public TMP_Text RequiredAmountText => requiredAmountText;
 
-
-    [Header("[== IMAGE FIELDS ==]")]
+    [Header("[== IMAGE REFERENCES ==]")]
     [SerializeField] private Image craftableImage;
     [SerializeField] private Image uncraftableImage;
+    [SerializeField] private Image materialImage;
+    [SerializeField] private Image blockImage;
     public Image CraftableImage => craftableImage;
     public Image UncraftableImage => uncraftableImage;
+    public Image MaterialImage => materialImage;
+    public Image BlockImage => blockImage;
 
-    [Header("[== BUTTON FIELDS ==]")]
+    [Header("[== BUTTON REFERENCES ==]")]
     [SerializeField] private Button craftButton;
     public Button CraftButton => craftButton;
+
+    void Start()
+    {
+        materialImage.sprite = craftingSlotData.trashIcon;
+        blockImage.sprite = craftingSlotData.blockIcon;
+    }
 }

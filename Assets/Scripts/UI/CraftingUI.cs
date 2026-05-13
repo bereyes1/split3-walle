@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,26 +11,33 @@ public class CraftingUI : MonoBehaviour
     [SerializeField] private CraftingSystem craftingSystem;
     [SerializeField] private InputReader inputReader;
 
-    [Header("[== UI REFERENCES==]")]
+    [Header("[== UI REFERENCES ==]")]
     [SerializeField] private Button closeButton;
     [SerializeField] private CanvasGroup panelGroup;
 
-    [Header("[== CRAFTING SLOT FIELDS ==]")]
+    [Header("[== CRAFTING SLOT REFERENCES ==]")]
     [SerializeField] private CraftingSlotScript trashSlot;
 
     void Start()
     {
-        if (CursorManager.Instance != null)
-        {
-            cursorManager = CursorManager.Instance;
-        }
-
-        // add event listener for crafting button
-        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
-        
-        // add listener and lock cursor
-        closeButton.onClick.AddListener(OpenCraftMenu);
+        if (CursorManager.Instance != null) cursorManager = CursorManager.Instance;
         cursorManager.LockCursor();
+
+        CreateButtonListeners();
+        InitCanvasWindow();
+    }
+
+    private void CreateButtonListeners()
+    {
+        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
+        closeButton.onClick.AddListener(OpenCraftMenu);
+    }
+
+    private void InitCanvasWindow()
+    {
+        panelGroup.alpha = 0f;
+        panelGroup.interactable = false;
+        panelGroup.blocksRaycasts = false;
     }
 
     private void OnEnable()
@@ -61,14 +67,29 @@ public class CraftingUI : MonoBehaviour
         cursorManager.ToggleCursorLock();
     }
 
-    private void HandleInventoryChanged(ItemData item) => UpdatePanelText();
+    private void HandleInventoryChanged(ItemData item) => UpdatePanel();
 
     private void UpdatePanel()
     {
+        UpdatePanelImage();
+        UpdatePanelText();
+    }
+
+    private void UpdatePanelImage()
+    {
+        Color white = new Color(1f, 1f, 1f, 1f);
+        Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
         bool canCraft = craftingSystem.CanCraft();
+
         trashSlot.CraftableImage.enabled = canCraft;
         trashSlot.UncraftableImage.enabled = !canCraft;
-        UpdatePanelText();
+
+        trashSlot.MaterialImage.color = inventory.InventoryCount > 0
+            ? white
+            : gray;
+        trashSlot.BlockImage.color = canCraft
+            ? white
+            : gray;
     }
 
     private void UpdatePanelText()

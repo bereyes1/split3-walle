@@ -156,6 +156,15 @@ namespace NewerInput
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HotbarSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""99ea06fc-98b6-44d9-a698-04c3b480294c"",
+                    ""expectedControlType"": """",
+                    ""processors"": ""Scale"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -398,6 +407,39 @@ namespace NewerInput
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CraftMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf2a98fb-a039-409a-ad1c-ac0a30ef2f3f"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8d0bd3dc-26ea-4001-b7ff-5088190da21a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7706aecb-14fd-474c-a0d8-da0f6aaf10fa"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HotbarSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -992,6 +1034,7 @@ namespace NewerInput
             m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
             m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
             m_Player_CraftMenu = m_Player.FindAction("CraftMenu", throwIfNotFound: true);
+            m_Player_HotbarSwitch = m_Player.FindAction("HotbarSwitch", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1092,6 +1135,7 @@ namespace NewerInput
         private readonly InputAction m_Player_Craft;
         private readonly InputAction m_Player_Place;
         private readonly InputAction m_Player_CraftMenu;
+        private readonly InputAction m_Player_HotbarSwitch;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -1131,6 +1175,10 @@ namespace NewerInput
             /// Provides access to the underlying input action "Player/CraftMenu".
             /// </summary>
             public InputAction @CraftMenu => m_Wrapper.m_Player_CraftMenu;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/HotbarSwitch".
+            /// </summary>
+            public InputAction @HotbarSwitch => m_Wrapper.m_Player_HotbarSwitch;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1178,6 +1226,9 @@ namespace NewerInput
                 @CraftMenu.started += instance.OnCraftMenu;
                 @CraftMenu.performed += instance.OnCraftMenu;
                 @CraftMenu.canceled += instance.OnCraftMenu;
+                @HotbarSwitch.started += instance.OnHotbarSwitch;
+                @HotbarSwitch.performed += instance.OnHotbarSwitch;
+                @HotbarSwitch.canceled += instance.OnHotbarSwitch;
             }
 
             /// <summary>
@@ -1210,6 +1261,9 @@ namespace NewerInput
                 @CraftMenu.started -= instance.OnCraftMenu;
                 @CraftMenu.performed -= instance.OnCraftMenu;
                 @CraftMenu.canceled -= instance.OnCraftMenu;
+                @HotbarSwitch.started -= instance.OnHotbarSwitch;
+                @HotbarSwitch.performed -= instance.OnHotbarSwitch;
+                @HotbarSwitch.canceled -= instance.OnHotbarSwitch;
             }
 
             /// <summary>
@@ -1559,6 +1613,13 @@ namespace NewerInput
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnCraftMenu(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "HotbarSwitch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnHotbarSwitch(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

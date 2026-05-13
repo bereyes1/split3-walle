@@ -68,6 +68,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HotbarSwitch",
+                    "type": "Button",
+                    "id": "99ea06fc-98b6-44d9-a698-04c3b480294c",
+                    "expectedControlType": "",
+                    "processors": "Scale",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -310,6 +319,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CraftMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf2a98fb-a039-409a-ad1c-ac0a30ef2f3f",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HotbarSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8d0bd3dc-26ea-4001-b7ff-5088190da21a",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HotbarSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7706aecb-14fd-474c-a0d8-da0f6aaf10fa",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HotbarSwitch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
