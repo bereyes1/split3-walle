@@ -21,17 +21,24 @@ public class CraftingUI : MonoBehaviour
 
     void Start()
     {
-        if (CursorManager.Instance != null)
-        {
-            cursorManager = CursorManager.Instance;
-        }
-
-        // add event listener for crafting button
-        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
-        
-        // add listener and lock cursor
-        closeButton.onClick.AddListener(OpenCraftMenu);
+        if (CursorManager.Instance != null) cursorManager = CursorManager.Instance;
         cursorManager.LockCursor();
+
+        CreateButtonListeners();
+        InitCanvasWindow();
+    }
+
+    private void CreateButtonListeners()
+    {
+        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
+        closeButton.onClick.AddListener(OpenCraftMenu);
+    }
+
+    private void InitCanvasWindow()
+    {
+        panelGroup.alpha = 0f;
+        panelGroup.interactable = false;
+        panelGroup.blocksRaycasts = false;
     }
 
     private void OnEnable()
@@ -61,14 +68,29 @@ public class CraftingUI : MonoBehaviour
         cursorManager.ToggleCursorLock();
     }
 
-    private void HandleInventoryChanged(ItemData item) => UpdatePanelText();
+    private void HandleInventoryChanged(ItemData item) => UpdatePanel();
 
     private void UpdatePanel()
     {
+        UpdatePanelImage();
+        UpdatePanelText();
+    }
+
+    private void UpdatePanelImage()
+    {
         bool canCraft = craftingSystem.CanCraft();
+        Color white = new Color(1f, 1f, 1f, 1f);
+        Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
+
         trashSlot.CraftableImage.enabled = canCraft;
         trashSlot.UncraftableImage.enabled = !canCraft;
-        UpdatePanelText();
+
+        trashSlot.MaterialImage.color = inventory.InventoryCount > 0
+            ? white
+            : gray;
+        trashSlot.BlockImage.color = canCraft
+            ? white
+            : gray;
     }
 
     private void UpdatePanelText()
