@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: CraftingSlot
   m_EditorClassIdentifier: Assembly-CSharp::CraftingSlot
   trashName: Trash Name
-  trashCount: 0
-  trashIcon: {fileID: 0}
+  trashIcon: {fileID: 21300000, guid: af892c2874ad1594982e259a9eccd3d0, type: 3}
   blockName: Trash Block
-  blockCount: 0
-  blockIcon: {fileID: 0}
+  blockIcon: {fileID: 21300000, guid: 5f5122a450d8f2743ac3218a26db7017, type: 3}

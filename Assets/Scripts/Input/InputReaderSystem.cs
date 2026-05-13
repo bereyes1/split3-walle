@@ -43,13 +43,12 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     public event Action CraftEvent;
     public event Action PlaceEvent;
     public event Action CraftMenuEvent;
+    public event Action<float> HotbarSwitchEvent;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-        {
             InteractEvent?.Invoke();
-        }
     }
 
     public void OnLook(InputAction.CallbackContext context)
@@ -65,32 +64,32 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     public void OnSprint(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-        {
             SprintEvent?.Invoke();
-        }
     }
 
     public void OnCraft(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-        {
             CraftEvent?.Invoke();
-        }
     }
 
     public void OnPlace(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-        {
             PlaceEvent?.Invoke();
-        }
     }
 
     public void OnCraftMenu(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-        {
             CraftMenuEvent?.Invoke();
-        }
+    }
+
+    public void OnHotbarSwitch(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Performed) return;
+        HotbarSwitchEvent?.Invoke(
+            int.Parse(context.control.name)
+        );
     }
 }
