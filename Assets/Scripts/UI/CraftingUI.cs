@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,11 +11,11 @@ public class CraftingUI : MonoBehaviour
     [SerializeField] private CraftingSystem craftingSystem;
     [SerializeField] private InputReader inputReader;
 
-    [Header("[== UI REFERENCES==]")]
+    [Header("[== UI REFERENCES ==]")]
     [SerializeField] private Button closeButton;
     [SerializeField] private CanvasGroup panelGroup;
 
-    [Header("[== CRAFTING SLOT FIELDS ==]")]
+    [Header("[== CRAFTING SLOT REFERENCES ==]")]
     [SerializeField] private CraftingSlotScript trashSlot;
 
     void Start()
@@ -78,9 +77,9 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanelImage()
     {
-        bool canCraft = craftingSystem.CanCraft();
         Color white = new Color(1f, 1f, 1f, 1f);
         Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
+        bool canCraft = craftingSystem.CanCraft();
 
         trashSlot.CraftableImage.enabled = canCraft;
         trashSlot.UncraftableImage.enabled = !canCraft;
