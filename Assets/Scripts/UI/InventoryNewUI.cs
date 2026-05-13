@@ -14,8 +14,7 @@ public class InventoryNewUI : MonoBehaviour
     [SerializeField] private Image hotbarSelectImage;
 
     [Header("[== CRAFTING SLOT REFERENCES ==]")]
-    [SerializeField] private InventorySlotScript inventorySlot1;
-    private List<InventorySlotScript> inventorySlots = new List<InventorySlotScript>();
+    [SerializeField] private List<InventorySlotScript> inventorySlots;
     private int inventorySlotCurrent = 1;
 
     private void OnEnable()
@@ -38,7 +37,6 @@ public class InventoryNewUI : MonoBehaviour
 
     private void Start()
     {
-        inventorySlots.Add(inventorySlot1);
         UpdateUI();
     }
 
@@ -62,7 +60,10 @@ public class InventoryNewUI : MonoBehaviour
         int count = inventory.InventoryCount;
         int craftables = craftingSystem.TrashBlockCount;
 
-        inventorySlot1.MaterialText.text = $"{count}";
-        inventorySlot1.BlockText.text = $"{craftables}";
+        foreach(InventorySlotScript slot in inventorySlots)
+        {
+            slot.MaterialText.text = $"{count}";
+            slot.BlockText.text = $"{craftables}";
+        }
     }
 }
