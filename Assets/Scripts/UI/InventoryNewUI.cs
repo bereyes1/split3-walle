@@ -57,11 +57,14 @@ public class InventoryNewUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        int count = inventory.InventoryCount;
+        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
         int craftables = craftingSystem.TrashBlockCount;
 
         foreach(InventorySlotScript slot in inventorySlots)
         {
+            int count = itemsDict.ContainsKey(slot.Data.trashData)
+                ? itemsDict[slot.Data.trashData]
+                : 0;
             slot.MaterialText.text = $"{count}";
             slot.BlockText.text = $"{craftables}";
         }

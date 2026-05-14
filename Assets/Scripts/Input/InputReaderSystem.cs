@@ -7,6 +7,7 @@ using System;
 public class InputReader : ScriptableObject, RealInput.IPlayerActions
 {
     public RealInput realInput;
+    private bool inputEnabled;
 
     private void OnEnable()
     {
@@ -26,6 +27,7 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
 
     public void SetPlayer()
     {
+        inputEnabled = true;
         DisableAll();
         realInput.Player.Enable();
     }
@@ -33,6 +35,7 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     //disable all input maps
     public void DisableAll()
     {
+        inputEnabled = false;
         realInput.Player.Disable();
     }
 

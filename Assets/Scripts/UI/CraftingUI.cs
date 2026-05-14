@@ -67,7 +67,10 @@ public class CraftingUI : MonoBehaviour
         panelGroup.alpha = isOpen ? 1f : 0f;
         panelGroup.interactable = isOpen;
         panelGroup.blocksRaycasts = isOpen;
+
         cursorManager.ToggleCursorLock();
+        if (isOpen) inputReader.DisableAll();
+        else inputReader.SetPlayer();
     }
 
     private void HandleInventoryChanged(ItemData item) => UpdatePanel();
@@ -80,17 +83,22 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanelColors()
     {
+        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
         Color white = new Color(1f, 1f, 1f, 1f);
         Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
-        bool canCraft = craftingSystem.CanCraft();
 
         foreach(CraftingSlotScript slot in trashSlots)
         {
+            int count = itemsDict.ContainsKey(slot.Data.trashData)
+                ? itemsDict[slot.Data.trashData]
+                : 0;
+            bool canCraft = count >= craftingSystem.TrashPerBlock;
+
             slot.CraftableImage.enabled = canCraft;
             slot.UncraftableImage.enabled = !canCraft;
             slot.CraftButton.interactable = canCraft; // changes color of button, enabled doesn't
 
-            slot.MaterialImage.color = inventory.InventoryCount > 0
+            slot.MaterialImage.color = count > 0
                 ? white
                 : gray;
             slot.BlockImage.color = canCraft
@@ -101,10 +109,12 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanelText()
     {
-        int count = inventory.InventoryCount;
-
+        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
         foreach(CraftingSlotScript slot in trashSlots)
         {
+            int count = itemsDict.ContainsKey(slot.Data.trashData)
+                ? itemsDict[slot.Data.trashData]
+                : 0;
             slot.MaterialText.text =
                 $"{count}";
             slot.RequiredAmountText.text =

@@ -7,6 +7,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public string itemName;
+    public float weight;
     public Sprite icon;
     public GameObject prefab;
 }

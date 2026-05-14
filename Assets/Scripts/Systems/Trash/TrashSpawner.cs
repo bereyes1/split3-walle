@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class TrashEntry
-{
-    public GameObject prefab;
-    public float weight = 1f;
-}
+// [System.Serializable]
+// public class TrashEntry
+// {
+//     public GameObject prefab;
+//     public float weight = 1f;
+// }
 
 public class TrashSpawner : MonoBehaviour
 {
     [Header("Trash Types")]
-    [SerializeField] private List<TrashEntry> trashTypes;
+    [SerializeField] private List<ItemData> trashTypes;
 
     [Header("Poisson Settings")]
     [SerializeField] private float radius = 3f;
@@ -47,7 +47,7 @@ public class TrashSpawner : MonoBehaviour
         }
 
         float totalWeight = 0f;
-        foreach (TrashEntry entry in trashTypes)
+        foreach (ItemData entry in trashTypes)
         {
             totalWeight += entry.weight;
         }
@@ -84,7 +84,7 @@ public class TrashSpawner : MonoBehaviour
     {
         float roll = Random.Range(0f, totalWeight);
         float cumulative = 0f;
-        foreach (TrashEntry entry in trashTypes)
+        foreach (ItemData entry in trashTypes)
         {
             cumulative += entry.weight;
             if (roll <= cumulative)
