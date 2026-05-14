@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class CraftingUI : MonoBehaviour
     [SerializeField] private CanvasGroup panelGroup;
 
     [Header("[== CRAFTING SLOT REFERENCES ==]")]
-    [SerializeField] private CraftingSlotScript trashSlot;
+    [SerializeField] private List<CraftingSlotScript> trashSlots;
 
     void Start()
     {
@@ -29,7 +30,9 @@ public class CraftingUI : MonoBehaviour
 
     private void CreateButtonListeners()
     {
-        trashSlot.CraftButton.onClick.AddListener(craftingSystem.Craft);
+        foreach(CraftingSlotScript slot in trashSlots)
+            slot.CraftButton.onClick.AddListener(craftingSystem.Craft);
+        
         closeButton.onClick.AddListener(OpenCraftMenu);
     }
 
@@ -71,35 +74,43 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanel()
     {
-        UpdatePanelImage();
+        UpdatePanelColors();
         UpdatePanelText();
     }
 
-    private void UpdatePanelImage()
+    private void UpdatePanelColors()
     {
         Color white = new Color(1f, 1f, 1f, 1f);
         Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
         bool canCraft = craftingSystem.CanCraft();
 
-        trashSlot.CraftableImage.enabled = canCraft;
-        trashSlot.UncraftableImage.enabled = !canCraft;
+        foreach(CraftingSlotScript slot in trashSlots)
+        {
+            slot.CraftableImage.enabled = canCraft;
+            slot.UncraftableImage.enabled = !canCraft;
+            slot.CraftButton.interactable = canCraft; // changes color of button, enabled doesn't
 
-        trashSlot.MaterialImage.color = inventory.InventoryCount > 0
-            ? white
-            : gray;
-        trashSlot.BlockImage.color = canCraft
-            ? white
-            : gray;
+            slot.MaterialImage.color = inventory.InventoryCount > 0
+                ? white
+                : gray;
+            slot.BlockImage.color = canCraft
+                ? white
+                : gray;
+        }
     }
 
     private void UpdatePanelText()
     {
         int count = inventory.InventoryCount;
-        trashSlot.MaterialText.text =
-            $"{count}";
-        trashSlot.RequiredAmountText.text =
-            $"{craftingSystem.TrashPerBlock} NEEDED";
-        trashSlot.BlockText.text =
-            $"{count / craftingSystem.TrashPerBlock}";
+
+        foreach(CraftingSlotScript slot in trashSlots)
+        {
+            slot.MaterialText.text =
+                $"{count}";
+            slot.RequiredAmountText.text =
+                $"COST: {craftingSystem.TrashPerBlock}";
+            slot.BlockText.text =
+                $"{count / craftingSystem.TrashPerBlock}";
+        }
     }
 }
