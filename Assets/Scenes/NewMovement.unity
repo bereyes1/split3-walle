@@ -7380,8 +7380,8 @@ RectTransform:
   - {fileID: 1158730190}
   - {fileID: 1667248873}
   - {fileID: 80492937}
-  - {fileID: 251967467}
   - {fileID: 1146499948}
+  - {fileID: 251967467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8957,7 +8957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d153295fc1e63843830a7b5a8840713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotScript
-  craftingSlotData: {fileID: 11400000, guid: ec34ad5de6740b9428e45dd43b738482, type: 2}
+  craftingSlotData: {fileID: 11400000, guid: 61aab9112d026474d95738194038cd58, type: 2}
   materialText: {fileID: 1771966231}
   blockText: {fileID: 1530675185}
   materialImage: {fileID: 409515758}
@@ -13152,8 +13152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashSpawner
   trashTypes:
-  - prefab: {fileID: 4844533788713495357, guid: d0f1d45fb26ba3042a76434e1c8e8eff, type: 3}
-    weight: 1
+  - {fileID: 11400000, guid: ff17bdc2d7dd86144b5de4b0c9e0d19a, type: 2}
+  - {fileID: 11400000, guid: 33f1be0792366ac49ac64a88abd68210, type: 2}
   radius: 5.56
   regionSize: {x: 100, y: 100}
   rejectionSamples: 26
@@ -28883,7 +28883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fec0aa62b1b1ce46a6a759e8b171b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotScript
-  craftingSlotData: {fileID: 11400000, guid: ec34ad5de6740b9428e45dd43b738482, type: 2}
+  craftingSlotData: {fileID: 11400000, guid: 61aab9112d026474d95738194038cd58, type: 2}
   materialText: {fileID: 2068584970}
   blockText: {fileID: 1863082539}
   requiredAmountText: {fileID: 1132667374}
@@ -36978,7 +36978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fec0aa62b1b1ce46a6a759e8b171b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotScript
-  craftingSlotData: {fileID: 11400000, guid: ec34ad5de6740b9428e45dd43b738482, type: 2}
+  craftingSlotData: {fileID: 11400000, guid: 61aab9112d026474d95738194038cd58, type: 2}
   materialText: {fileID: 1081620940}
   blockText: {fileID: 785771758}
   requiredAmountText: {fileID: 322120594}
@@ -51633,7 +51633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d153295fc1e63843830a7b5a8840713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotScript
-  craftingSlotData: {fileID: 11400000, guid: ec34ad5de6740b9428e45dd43b738482, type: 2}
+  craftingSlotData: {fileID: 11400000, guid: 61aab9112d026474d95738194038cd58, type: 2}
   materialText: {fileID: 1111948246}
   blockText: {fileID: 829067323}
   materialImage: {fileID: 1284429084}
@@ -52966,9 +52966,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1064953946}
-  - {fileID: 610651860}
-  - {fileID: 1123443003}
   - {fileID: 1484728533}
+  - {fileID: 1123443003}
+  - {fileID: 610651860}
   m_Father: {fileID: 251967467}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

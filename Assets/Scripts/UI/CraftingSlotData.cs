@@ -9,6 +9,7 @@ public class CraftingSlotData : ScriptableObject
     [Header("[== TRASH DATA ==]")]
     public string trashName;
     public Sprite trashIcon;
+    public ItemData trashData;
 
     [Header("[== BLOCK DATA ==]")]
     public string blockName;

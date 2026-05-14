@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: PlasticTrash
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Plastic
+  weight: 2
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   prefab: {fileID: 4844533788713495357, guid: d0f1d45fb26ba3042a76434e1c8e8eff, type: 3}
