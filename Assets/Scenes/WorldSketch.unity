@@ -23357,7 +23357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryNewUI
   inventory: {fileID: 1810503450}
   craftingSystem: {fileID: 538269574}
-  placementSystem: {fileID: 1497532858}
+  placementSystem: {fileID: 1497532859}
   trashSpawner: {fileID: 546579239}
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
   hotbarSelectImage: {fileID: 41414428}

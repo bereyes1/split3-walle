@@ -8,7 +8,7 @@ public class InventoryNewUI : MonoBehaviour
     [Header("[== SYSTEM REFERENCES ==]]")]
     [SerializeField] private Inventory inventory;
     [SerializeField] private CraftingSystem craftingSystem;
-    [SerializeField] private PlacementSystem placementSystem;
+    [SerializeField] private PlacementPreviewController placementSystem;
     [SerializeField] private TrashSpawner trashSpawner;
     [SerializeField] private InputReader inputReader;
 
