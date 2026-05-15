@@ -1255,7 +1255,6 @@ MonoBehaviour:
   placementSystem: {fileID: 1497532858}
   inventoryCountText: {fileID: 957331822}
   craftCostText: {fileID: 457673075}
-  craftablesText: {fileID: 1369741317}
 --- !u!114 &80492939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7370,7 +7369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CraftingSystem
   playerInventory: {fileID: 1810503450}
-  inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
+  invUI: {fileID: 0}
   trashPerBlock: 5
 --- !u!4 &538269575
 Transform:
@@ -7523,8 +7522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashSpawner
   trashTypes:
-  - prefab: {fileID: 4844533788713495357, guid: d0f1d45fb26ba3042a76434e1c8e8eff, type: 3}
-    weight: 1
+  - {fileID: 11400000, guid: ff17bdc2d7dd86144b5de4b0c9e0d19a, type: 2}
+  - {fileID: 11400000, guid: 33f1be0792366ac49ac64a88abd68210, type: 2}
   radius: 5.56
   regionSize: {x: 98.4, y: 102}
   rejectionSamples: 26
@@ -14801,7 +14800,7 @@ GameObject:
   - component: {fileID: 1116450743}
   - component: {fileID: 1116450742}
   m_Layer: 0
-  m_Name: Post PRocessing
+  m_Name: Post Processing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20220,7 +20219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlacementSystem
   craftingSystem: {fileID: 538269574}
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
-  trashBlockPrefab: {fileID: 160080274556021538, guid: 6daef3c092f649a49bcb2944afcf2c97, type: 3}
   player: {fileID: 6505057340831361182}
   placementDistance: 2
   raycastOriginHeight: 10
@@ -27663,7 +27661,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
   closeButton: {fileID: 1064953947}
   panelGroup: {fileID: 2096845981}
-  trashSlot: {fileID: 0}
+  trashSlots: []
 --- !u!225 &2096845981
 CanvasGroup:
   m_ObjectHideFlags: 0

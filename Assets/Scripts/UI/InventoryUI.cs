@@ -11,7 +11,6 @@ public class InventoryUI : MonoBehaviour
     [Header("Text Fields")]
     [SerializeField] private TMP_Text inventoryCountText;
     [SerializeField] private TMP_Text craftCostText;
-    [SerializeField] private TMP_Text craftablesText;
 
     private void OnEnable()
     {
@@ -40,10 +39,8 @@ public class InventoryUI : MonoBehaviour
     {
         int count = inventory.InventoryCount;
         int cost = craftingSystem.TrashPerBlock;
-        // int craftables = craftingSystem.TrashBlockCount;
 
         inventoryCountText.text = "Inventory: " + count;
         craftCostText.text = "Cost: " + cost;
-        // craftablesText.text = "Craftables: " + craftables;
     }
 }

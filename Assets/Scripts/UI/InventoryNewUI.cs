@@ -40,6 +40,7 @@ public class InventoryNewUI : MonoBehaviour
 
     private void Start()
     {
+        inventorySlots.ForEach(slot => slot.MaterialName.text = slot.Data.trashData.itemName);
         UpdateUI();
     }
 
@@ -65,8 +66,8 @@ public class InventoryNewUI : MonoBehaviour
             int count = inventory.dictCount(data.trashData);
             int craftables = craftingSystem.dictCount(data.blockData);
 
-            slot.MaterialText.text = $"{count}";
-            slot.BlockText.text = $"{craftables}";
+            slot.MaterialCount.text = $"{count}";
+            slot.BlockCount.text = $"{craftables}";
         }
     }
 }
