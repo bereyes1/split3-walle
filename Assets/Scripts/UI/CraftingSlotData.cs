@@ -14,4 +14,5 @@ public class CraftingSlotData : ScriptableObject
     [Header("[== BLOCK DATA ==]")]
     public string blockName;
     public Sprite blockIcon;
+    public BlockData blockData;
 }

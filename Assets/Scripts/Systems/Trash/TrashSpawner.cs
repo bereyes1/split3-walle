@@ -62,10 +62,16 @@ public class TrashSpawner : MonoBehaviour
 
             if (!Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, raycastOriginHeight + 200f, groundLayers)) continue;
 
-            GameObject trashPrefab = PickWeightedRandom(totalWeight);
-            if (trashPrefab == null) continue;
+            ItemData item = PickWeightedRandom(totalWeight);
+            GameObject trashPrefab = item.prefab;
+            if (item == null || trashPrefab == null) continue;
 
-            GameObject obj = Instantiate(trashPrefab, hit.point, Quaternion.identity, container.transform);
+            GameObject obj = Instantiate(
+                trashPrefab,
+                hit.point,
+                Quaternion.identity,
+                container.transform
+            );
 
             Renderer renderer = obj.GetComponentInChildren<Renderer>();
             if (renderer != null)
@@ -80,7 +86,7 @@ public class TrashSpawner : MonoBehaviour
         Debug.Log($"TrashSpawner: placed {placed}/{samplePoints.Count} trash objects.");
     }
 
-    private GameObject PickWeightedRandom(float totalWeight)
+    private ItemData PickWeightedRandom(float totalWeight)
     {
         float roll = Random.Range(0f, totalWeight);
         float cumulative = 0f;
@@ -89,10 +95,10 @@ public class TrashSpawner : MonoBehaviour
             cumulative += entry.weight;
             if (roll <= cumulative)
             {
-                return entry.prefab;
+                return entry;
             }
         }
-        return trashTypes[trashTypes.Count - 1].prefab;
+        return trashTypes[trashTypes.Count - 1];
     }
 
     private void OnValidate()

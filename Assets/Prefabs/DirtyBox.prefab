@@ -113,4 +113,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82d1e1b0b1728c4bb779680df8e01e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrashItem
-  itemData: {fileID: 11400000, guid: 33f1be0792366ac49ac64a88abd68210, type: 2}
+  itemData: {fileID: 11400000, guid: ff17bdc2d7dd86144b5de4b0c9e0d19a, type: 2}

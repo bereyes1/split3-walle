@@ -12754,7 +12754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CraftingSystem
   playerInventory: {fileID: 1810503450}
-  inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
+  invUI: {fileID: 1146499949}
   trashPerBlock: 5
 --- !u!4 &538269575
 Transform:

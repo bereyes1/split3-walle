@@ -58,7 +58,7 @@ public class PlacementPreviewController : MonoBehaviour
             Debug.Log("Preview mode: " + previewMode);
         }
 
-        if (!previewMode || craftingSystem == null || craftingSystem.TrashBlockCount <= 0)
+        if (!previewMode || craftingSystem == null || craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
         {
             HidePreview();
             return;
@@ -103,7 +103,7 @@ public class PlacementPreviewController : MonoBehaviour
 
     private void PlaceBlock()
     {
-        if (craftingSystem == null || craftingSystem.TrashBlockCount <= 0)
+        if (craftingSystem == null || craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
         {
             Debug.Log("No blocks available!");
             return;
@@ -121,7 +121,7 @@ public class PlacementPreviewController : MonoBehaviour
 
         OnBlockPlaced?.Invoke();
 
-        if (craftingSystem.TrashBlockCount <= 0)
+        if (craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
         {
             previewMode = false;
             HidePreview();

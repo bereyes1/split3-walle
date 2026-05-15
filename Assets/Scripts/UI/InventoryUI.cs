@@ -40,10 +40,10 @@ public class InventoryUI : MonoBehaviour
     {
         int count = inventory.InventoryCount;
         int cost = craftingSystem.TrashPerBlock;
-        int craftables = craftingSystem.TrashBlockCount;
+        // int craftables = craftingSystem.TrashBlockCount;
 
         inventoryCountText.text = "Inventory: " + count;
         craftCostText.text = "Cost: " + cost;
-        craftablesText.text = "Craftables: " + craftables;
+        // craftablesText.text = "Craftables: " + craftables;
     }
 }

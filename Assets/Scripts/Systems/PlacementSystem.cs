@@ -25,9 +25,9 @@ public class PlacementSystem : MonoBehaviour
 
     public void PlaceBlock()
     {
-        if (craftingSystem.TrashBlockCount <= 0)
+        if (craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
         {
-            Debug.Log("No blocks available!");
+            Debug.Log($"No blocks available! Current Selected Block: {craftingSystem.currentBlock()}");
             return;
         }
 
