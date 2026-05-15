@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private int maxCapacity = 30;
     private readonly Dictionary<ItemData, int> itemsDict = new();
+    private int trashCollected = 0;
 
     public event Action<ItemData> OnItemAdded;
     public event Action<ItemData> OnItemRemoved;
@@ -14,6 +15,7 @@ public class Inventory : MonoBehaviour
 
     public bool IsFull => InventoryCount >= maxCapacity;
     public int InventoryCount => itemsDict.Values.Sum();
+    public int TrashCollected => trashCollected;
     public Dictionary<ItemData, int> ItemsDict => itemsDict;
 
     public bool Add(ItemData item)
@@ -28,6 +30,7 @@ public class Inventory : MonoBehaviour
         if (itemsDict.ContainsKey(item)) itemsDict[item]++;
         else itemsDict[item] = 1;
 
+        trashCollected++;
         OnItemAdded?.Invoke(item);
         return true;
     }

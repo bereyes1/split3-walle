@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,14 @@ public class InventoryNewUI : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private CraftingSystem craftingSystem;
     [SerializeField] private PlacementSystem placementSystem;
+    [SerializeField] private TrashSpawner trashSpawner;
     [SerializeField] private InputReader inputReader;
 
     [Header("[== IMAGE REFERENCES ==]")]
     [SerializeField] private Image hotbarSelectImage;
+
+    [Header("[== TEXT REFERENCES ==]")]
+    [SerializeField] private TMP_Text trashRemainingText;
 
     [Header("[== CRAFTING SLOT REFERENCES ==]")]
     [SerializeField] private List<InventorySlotScript> inventorySlots;
@@ -60,6 +65,7 @@ public class InventoryNewUI : MonoBehaviour
 
     private void UpdateUI()
     {
+        trashRemainingText.text = $"TRASH: {inventory.TrashCollected} / {trashSpawner.samplePointNum}";
         foreach(InventorySlotScript slot in inventorySlots)
         {
             CraftingSlotData data = slot.Data;
