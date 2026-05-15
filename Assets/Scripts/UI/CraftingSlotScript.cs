@@ -31,7 +31,7 @@ public class CraftingSlotScript : MonoBehaviour
 
     void Start()
     {
-        materialImage.sprite = craftingSlotData.trashIcon;
-        blockImage.sprite = craftingSlotData.blockIcon;
+        materialImage.sprite = craftingSlotData.trashData.icon;
+        blockImage.sprite = craftingSlotData.blockData.icon;
     }
 }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece3ba2d573d25f4192b20de3869f669, type: 3}
-  m_Name: TrashBlock
+  m_Name: CardboardBlock
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
-  blockName: Trash Block
-  icon: {fileID: 21300000, guid: c08f4a2adffc38a4383853a5cd2f76e0, type: 3}
-  prefab: {fileID: 160080274556021538, guid: 28f7b22cf6898254eac53e5d8e813eed, type: 3}
+  blockName: Cardboard Block
+  icon: {fileID: 21300000, guid: 484587f1a272c2847b1f67d654cf6b60, type: 3}
+  prefab: {fileID: 160080274556021538, guid: 12d17e8f5401b5d48a9e1dc5bf3c0d12, type: 3}

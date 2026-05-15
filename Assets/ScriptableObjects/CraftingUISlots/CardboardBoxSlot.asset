@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4625cc11c584257489a5977c31fa4088, type: 3}
-  m_Name: FoodScrapSlot
+  m_Name: CardboardBoxSlot
   m_EditorClassIdentifier: Assembly-CSharp::CraftingSlot
-  trashName: Food Scraps
-  trashIcon: {fileID: 21300000, guid: af892c2874ad1594982e259a9eccd3d0, type: 3}
   trashData: {fileID: 11400000, guid: ff17bdc2d7dd86144b5de4b0c9e0d19a, type: 2}
-  blockName: Food Block
-  blockIcon: {fileID: 21300000, guid: 5f5122a450d8f2743ac3218a26db7017, type: 3}
   blockData: {fileID: 11400000, guid: fc027f74227f26e40999b9d7a1219179, type: 2}

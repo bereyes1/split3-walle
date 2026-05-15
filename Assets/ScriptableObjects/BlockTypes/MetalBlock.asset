@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ece3ba2d573d25f4192b20de3869f669, type: 3}
-  m_Name: FoodBlock
+  m_Name: MetalBlock
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
-  blockName: FoodBlock
-  icon: {fileID: 21300000, guid: 4b4edfa62b631cc4d9fe7655da5a8d61, type: 3}
-  prefab: {fileID: 6306079470648883019, guid: 04ebbc07f76a50d45832062a899df8c7, type: 3}
+  blockName: Metal Block
+  icon: {fileID: 21300000, guid: 275df48abe6de6041b8f19d6f7440645, type: 3}
+  prefab: {fileID: 160080274556021538, guid: 6daef3c092f649a49bcb2944afcf2c97, type: 3}
