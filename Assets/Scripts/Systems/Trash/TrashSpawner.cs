@@ -26,6 +26,7 @@ public class TrashSpawner : MonoBehaviour
     [SerializeField] private float displayRadius = 0.5f;
 
     private List<Vector2> samplePoints;
+    public int samplePointNum => samplePoints.Count;
 
     private void Start()
     {
