@@ -10,6 +10,7 @@ public class PlacementPreviewController : MonoBehaviour
 
     [Header("[== RAYCASTING SETTINGS ==]")]
     [SerializeField] private LayerMask placementLayers;
+    [SerializeField] private GameObject previewBlock;
     [SerializeField] private float placementDistance = 2f;
     [SerializeField] private float raycastOriginHeight = 10f;
 
@@ -18,7 +19,6 @@ public class PlacementPreviewController : MonoBehaviour
 
     public event Action OnBlockPlaced;
 
-    private GameObject previewBlock;
     private bool previewMode;
     private bool hasValidPlacement;
     private Vector3 currentPlacementPosition;
@@ -26,7 +26,7 @@ public class PlacementPreviewController : MonoBehaviour
 
     private void Start()
     {
-        GameObject previewBlockPrefab = craftingSystem.CurrentBlock.prefab;
+        GameObject previewBlockPrefab = previewBlock;
         if (previewBlockPrefab != null)
         {
             previewBlock = Instantiate(previewBlockPrefab);

@@ -146,7 +146,9 @@ Assets/Scripts/
   ItemData.cs
   TrashItem.cs
  MainMenuScript.cs
- Managers/CursorManager.cs
+ Managers/
+  CursorManager.cs
+  SoundManager.cs
  Systems/
   PlacementPreviewController.cs
   PlacementSystem.cs
