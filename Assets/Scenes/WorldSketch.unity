@@ -8780,6 +8780,7 @@ MonoBehaviour:
   trashTypes:
   - {fileID: 11400000, guid: ff17bdc2d7dd86144b5de4b0c9e0d19a, type: 2}
   - {fileID: 11400000, guid: 33f1be0792366ac49ac64a88abd68210, type: 2}
+  - {fileID: 11400000, guid: fd27c9261df52de4dbb3c0746fb12d4e, type: 2}
   radius: 7.5
   regionSize: {x: 98.4, y: 102}
   rejectionSamples: 26
