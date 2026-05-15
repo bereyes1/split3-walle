@@ -31,8 +31,9 @@ public class CraftingUI : MonoBehaviour
     private void CreateButtonListeners()
     {
         foreach(CraftingSlotScript slot in trashSlots)
-            slot.CraftButton.onClick.AddListener(craftingSystem.Craft);
-        
+            slot.CraftButton.onClick.AddListener(
+                () => craftingSystem.Craft(slot.Data)
+            );
         closeButton.onClick.AddListener(OpenCraftMenu);
     }
 
@@ -83,16 +84,14 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanelColors()
     {
-        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
         Color white = new Color(1f, 1f, 1f, 1f);
         Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
 
         foreach(CraftingSlotScript slot in trashSlots)
         {
-            int count = itemsDict.ContainsKey(slot.Data.trashData)
-                ? itemsDict[slot.Data.trashData]
-                : 0;
-            bool canCraft = count >= craftingSystem.TrashPerBlock;
+            ItemData item = slot.Data.trashData;
+            int count = inventory.dictCount(item);
+            bool canCraft = craftingSystem.CanCraft(item);
 
             slot.CraftableImage.enabled = canCraft;
             slot.UncraftableImage.enabled = !canCraft;
@@ -109,18 +108,15 @@ public class CraftingUI : MonoBehaviour
 
     private void UpdatePanelText()
     {
-        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
         foreach(CraftingSlotScript slot in trashSlots)
         {
-            int count = itemsDict.ContainsKey(slot.Data.trashData)
-                ? itemsDict[slot.Data.trashData]
-                : 0;
+            int count = inventory.dictCount(slot.Data.trashData), cost = craftingSystem.TrashPerBlock;
             slot.MaterialText.text =
                 $"{count}";
             slot.RequiredAmountText.text =
-                $"COST: {craftingSystem.TrashPerBlock}";
+                $"COST: {cost}";
             slot.BlockText.text =
-                $"{count / craftingSystem.TrashPerBlock}";
+                $"{count / cost}";
         }
     }
 }

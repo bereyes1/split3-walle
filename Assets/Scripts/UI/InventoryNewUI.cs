@@ -15,7 +15,10 @@ public class InventoryNewUI : MonoBehaviour
 
     [Header("[== CRAFTING SLOT REFERENCES ==]")]
     [SerializeField] private List<InventorySlotScript> inventorySlots;
-    private int inventorySlotCurrent = 1;
+    private int inventorySlotCurrent = 0;
+    
+    public List<InventorySlotScript> InventorySlots => inventorySlots;
+    public int InventorySlotCurrent => inventorySlotCurrent;
 
     private void OnEnable()
     {
@@ -42,7 +45,7 @@ public class InventoryNewUI : MonoBehaviour
 
     private void HandleHotbarSwitch(float value)
     {
-        inventorySlotCurrent = (int)value;
+        inventorySlotCurrent = (int)value - 1;
         float selectSize = 160f;
         Vector2 hotbarSelectPos = hotbarSelectImage.rectTransform.anchoredPosition;
         hotbarSelectImage.GetComponent<RectTransform>().anchoredPosition =
@@ -50,21 +53,18 @@ public class InventoryNewUI : MonoBehaviour
                 selectSize * (value - 2),
                 hotbarSelectPos.y
             );
-        // TODO: link inventorySlotCurrent to CraftingSystem
     }
 
     private void HandleInventoryChanged(ItemData item) => UpdateUI();
 
     private void UpdateUI()
     {
-        Dictionary<ItemData, int> itemsDict = inventory.ItemsDict;
-        int craftables = craftingSystem.TrashBlockCount;
-
         foreach(InventorySlotScript slot in inventorySlots)
         {
-            int count = itemsDict.ContainsKey(slot.Data.trashData)
-                ? itemsDict[slot.Data.trashData]
-                : 0;
+            CraftingSlotData data = slot.Data;
+            int count = inventory.dictCount(data.trashData);
+            int craftables = craftingSystem.dictCount(data.blockData);
+
             slot.MaterialText.text = $"{count}";
             slot.BlockText.text = $"{craftables}";
         }
