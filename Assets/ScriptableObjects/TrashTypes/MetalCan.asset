@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa2fa2b1a36c07e4890427f448ce1bec, type: 3}
-  m_Name: TrashBag
+  m_Name: MetalCan
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Trash Bag
-  weight: 3
-  icon: {fileID: 21300000, guid: d33abd8ac90ab35478231d4e9b80d62a, type: 3}
-  prefab: {fileID: 7500962755059852625, guid: f267222af381e0b40a5968615cc3ba32, type: 3}
+  itemName: Metal Can
+  weight: 1
+  icon: {fileID: 21300000, guid: 4a1c4f0ff9665b64cbdd2ad214c9ec4d, type: 3}
+  prefab: {fileID: 4933881944425765954, guid: 267ccbf0492516d4987070e2e5c2d61b, type: 3}

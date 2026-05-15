@@ -4,14 +4,16 @@ using System;
 
 public class PlacementPreviewController : MonoBehaviour
 {
+    [Header("[== SYSTEM REFERENCES ==]")]
     [SerializeField] private CraftingSystem craftingSystem;
-    [SerializeField] private GameObject trashBlockPrefab;
-    [SerializeField] private GameObject previewBlockPrefab;
     [SerializeField] private Transform player;
 
+    [Header("[== RAYCASTING SETTINGS ==]")]
+    [SerializeField] private LayerMask placementLayers;
     [SerializeField] private float placementDistance = 2f;
     [SerializeField] private float raycastOriginHeight = 10f;
-    [SerializeField] private LayerMask placementLayers;
+
+    [Header("[== PREVIEW SETTINGS ==]")]
     [SerializeField] private float previewYOffset = 0.5f;
 
     public event Action OnBlockPlaced;
@@ -24,6 +26,7 @@ public class PlacementPreviewController : MonoBehaviour
 
     private void Start()
     {
+        GameObject previewBlockPrefab = craftingSystem.CurrentBlock.prefab;
         if (previewBlockPrefab != null)
         {
             previewBlock = Instantiate(previewBlockPrefab);
@@ -58,7 +61,7 @@ public class PlacementPreviewController : MonoBehaviour
             Debug.Log("Preview mode: " + previewMode);
         }
 
-        if (!previewMode || craftingSystem == null || craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
+        if (!previewMode || craftingSystem == null || craftingSystem.CurrentBlockCount <= 0)
         {
             HidePreview();
             return;
@@ -103,7 +106,7 @@ public class PlacementPreviewController : MonoBehaviour
 
     private void PlaceBlock()
     {
-        if (craftingSystem == null || craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
+        if (craftingSystem == null || craftingSystem.CurrentBlockCount <= 0)
         {
             Debug.Log("No blocks available!");
             return;
@@ -117,11 +120,11 @@ public class PlacementPreviewController : MonoBehaviour
 
         craftingSystem.UseBlock();
 
-        GameObject obj = Instantiate(trashBlockPrefab, currentPlacementPosition, currentPlacementRotation);
+        GameObject obj = Instantiate(craftingSystem.CurrentBlock.prefab, currentPlacementPosition, currentPlacementRotation);
 
         OnBlockPlaced?.Invoke();
 
-        if (craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
+        if (craftingSystem.CurrentBlockCount <= 0)
         {
             previewMode = false;
             HidePreview();

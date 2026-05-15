@@ -8,10 +8,12 @@ public class InventorySlotScript : MonoBehaviour
     public CraftingSlotData Data => craftingSlotData;
 
     [Header("[== TEXT REFERENCES ==]")]
-    [SerializeField] private TMP_Text materialText;
-    [SerializeField] private TMP_Text blockText;
-    public TMP_Text MaterialText => materialText;
-    public TMP_Text BlockText => blockText;
+    [SerializeField] private TMP_Text materialCount;
+    [SerializeField] private TMP_Text materialName;
+    [SerializeField] private TMP_Text blockCount;
+    public TMP_Text MaterialCount => materialCount;
+    public TMP_Text MaterialName => materialName;
+    public TMP_Text BlockCount => blockCount;
 
     [Header("[== IMAGE REFERENCES ==]")]
     [SerializeField] private Image materialImage;
@@ -21,7 +23,7 @@ public class InventorySlotScript : MonoBehaviour
 
     void Start()
     {
-        materialImage.sprite = craftingSlotData.trashIcon;
-        blockImage.sprite = craftingSlotData.blockIcon;
+        materialImage.sprite = craftingSlotData.trashData.icon;
+        blockImage.sprite = craftingSlotData.blockData.icon;
     }
 }

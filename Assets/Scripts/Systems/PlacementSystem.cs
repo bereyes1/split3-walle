@@ -3,9 +3,9 @@ using System;
 
 public class PlacementSystem : MonoBehaviour
 {
+    [Header("[== SYSTEM REFERENCES ==]")]
     [SerializeField] private CraftingSystem craftingSystem;
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private GameObject trashBlockPrefab;
     [SerializeField] private Transform player;
     [SerializeField] private float placementDistance = 2f;
     [SerializeField] private float raycastOriginHeight = 10f;
@@ -25,9 +25,9 @@ public class PlacementSystem : MonoBehaviour
 
     public void PlaceBlock()
     {
-        if (craftingSystem.dictCount(craftingSystem.currentBlock()) <= 0)
+        if (craftingSystem.CurrentBlockCount <= 0)
         {
-            Debug.Log($"No blocks available! Current Selected Block: {craftingSystem.currentBlock()}");
+            Debug.Log($"No blocks available! Current Selected Block: {craftingSystem.CurrentBlock}");
             return;
         }
 
@@ -36,6 +36,7 @@ public class PlacementSystem : MonoBehaviour
 
         craftingSystem.UseBlock();
 
+        GameObject trashBlockPrefab = craftingSystem.CurrentBlock.prefab;
         if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, raycastOriginHeight + 5f, placementLayers))
         {
             GameObject obj = Instantiate(trashBlockPrefab, hit.point, player.rotation);

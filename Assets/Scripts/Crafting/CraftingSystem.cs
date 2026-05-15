@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class CraftingSystem : MonoBehaviour
 {
-    // [SerializeField] private InputReader inputReader;
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private InventoryNewUI invUI;
     [SerializeField] private int trashPerBlock = 5;
+    private readonly Dictionary<BlockData, int> TrashBlockCount = new();
     
     public int TrashPerBlock => trashPerBlock;
+    public int CurrentBlockCount => dictCount(CurrentBlock);
+    public BlockData CurrentBlock => invUI
+        .InventorySlots[invUI.InventorySlotCurrent]
+        .Data
+        .blockData;
 
     public event Action OnCraftSuccess;
     public event Action OnCraftFailed;
-
-    private readonly Dictionary<BlockData, int> TrashBlockCount = new();
-
-    // private void OnEnable()
-    // {
-    //     inputReader.CraftEvent += Craft;
-    // }
-
-    // private void OnDisable()
-    // {
-    //     inputReader.CraftEvent -= Craft;
-    // }
 
     public bool UseBlock()
     {
@@ -69,13 +62,5 @@ public class CraftingSystem : MonoBehaviour
         return TrashBlockCount.ContainsKey(item)
             ? TrashBlockCount[item]
             : 0;
-    }
-
-    public BlockData currentBlock()
-    {
-        return invUI
-            .InventorySlots[invUI.InventorySlotCurrent]
-            .Data
-            .blockData;
     }
 }
