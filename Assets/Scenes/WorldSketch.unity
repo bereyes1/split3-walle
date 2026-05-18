@@ -2866,6 +2866,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9ec25066ec33fa84d9227e27c5f5a8a0, type: 3}
   m_PrefabInstance: {fileID: 191387650}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &201147431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201147433}
+  - component: {fileID: 201147432}
+  m_Layer: 0
+  m_Name: GridPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &201147432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201147431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5573ac6fe1bb8a74d8c45407ba0d0d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridPlacementSystem
+  craftingSystem: {fileID: 538269574}
+  inventoryNewUI: {fileID: 1484159757}
+  playerInventory: {fileID: 1810503450}
+  inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
+  player: {fileID: 6505057340831361182}
+  placementLayers:
+    serializedVersion: 2
+    m_Bits: 65
+  placementDistance: 2
+  raycastOriginHeight: 10
+  cellSize: 1.5
+--- !u!4 &201147433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201147431}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 334.13065, y: 0.00001, z: 1965.0435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &203832154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589919683574084, guid: 5a525eed3adce3248bcfd773cab5d126, type: 3}
@@ -14879,12 +14934,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2048ab78f804064daf3d085c5488653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridPlacementMenu
-  placementSystem: {fileID: 0}
-  craftingSystem: {fileID: 0}
-  playerInventory: {fileID: 0}
-  inventoryNewUI: {fileID: 0}
+  placementSystem: {fileID: 201147432}
+  craftingSystem: {fileID: 538269574}
+  playerInventory: {fileID: 1810503450}
+  inventoryNewUI: {fileID: 1484159757}
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
-  cursorManager: {fileID: 0}
+  cursorManager: {fileID: 1122924421}
   gridButtons:
   - {fileID: 1270326956}
   - {fileID: 971279150}
@@ -25532,8 +25587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryNewUI
   inventory: {fileID: 1810503450}
   craftingSystem: {fileID: 538269574}
-  placementSystem: {fileID: 0}
-  gridPlacementSystem: {fileID: 0}
+  placementSystem: {fileID: 1497532858}
+  gridPlacementSystem: {fileID: 201147432}
   trashSpawner: {fileID: 546579239}
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
   hotbarSelectImage: {fileID: 41414428}
@@ -33750,6 +33805,8 @@ MonoBehaviour:
     [1-3]
     Switch Blocks
 
+    [G] Grid Place
+
     [TAB] Crafting Menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ed5734534c88d8d45bc21af4a9774cd5, type: 2}
@@ -37691,3 +37748,4 @@ SceneRoots:
   - {fileID: 1569690789}
   - {fileID: 1151203152}
   - {fileID: 829660536}
+  - {fileID: 201147433}

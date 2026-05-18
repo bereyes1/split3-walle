@@ -38,6 +38,7 @@ public class GridPlacementSystem : MonoBehaviour
             Debug.LogWarning("GridPlacementSystem: Current block has no prefab.");
             return;
         }
+
         if (useRawTrash)
         {
             ItemData requiredTrash = GetTrashForBlock(currentBlock);
@@ -68,11 +69,13 @@ public class GridPlacementSystem : MonoBehaviour
             for (int i = 0; i < cells.Count; i++)
                 craftingSystem.UseBlock();
         }
+
         Vector3 placementPoint = player.position + player.forward * placementDistance;
         Vector3 rayOrigin = placementPoint + Vector3.up * raycastOriginHeight;
 
         bool hitGround = Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, raycastOriginHeight + 5f, placementLayers);
         Vector3 anchor = hitGround ? hit.point : placementPoint;
+
         Vector3 colAxis = new Vector3(player.right.x, 0f, player.right.z).normalized;
         Vector3 rowAxis = isVertical
             ? Vector3.up
@@ -86,15 +89,12 @@ public class GridPlacementSystem : MonoBehaviour
                 + rowAxis * (rowOffset * cellSize);
 
             GameObject obj = Instantiate(prefab, worldPos, player.rotation);
+
+            Rigidbody rb = obj.GetComponent<Rigidbody>();
+            if (rb != null) StartCoroutine(EnablePhysicsNextFrame(rb));
+
             if (!isVertical)
-            {
-                Renderer renderer = obj.GetComponentInChildren<Renderer>();
-                if (renderer != null)
-                {
-                    float bottomOffset = obj.transform.position.y - renderer.bounds.min.y;
-                    obj.transform.position += Vector3.up * bottomOffset;
-                }
-            }
+                obj.transform.position += Vector3.up * 0.5f;
         }
 
         OnBlockPlaced?.Invoke();
@@ -108,5 +108,12 @@ public class GridPlacementSystem : MonoBehaviour
                 return slot.Data.trashData;
         }
         return null;
+    }
+
+    private System.Collections.IEnumerator EnablePhysicsNextFrame(Rigidbody rb)
+    {
+        rb.isKinematic = true;
+        yield return new WaitForFixedUpdate();
+        rb.isKinematic = false;
     }
 }
