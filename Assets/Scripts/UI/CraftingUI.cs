@@ -10,7 +10,6 @@ public class CraftingUI : MonoBehaviour
     [Header("[== SYSTEM REFERENCES ==]")]
     [SerializeField] private Inventory inventory;
     [SerializeField] private CraftingSystem craftingSystem;
-    [SerializeField] private PlacementPreviewController placementSystem;
     [SerializeField] private InputReader inputReader;
 
     [Header("[== UI REFERENCES ==]")]
@@ -65,9 +64,6 @@ public class CraftingUI : MonoBehaviour
 
     private void OpenCraftMenu()
     {
-        // disable preview so it doesn't pre-place before exiting preview mode
-        placementSystem.DisablePreviewMode();
-
         isOpen = !isOpen;
         panelGroup.alpha = isOpen ? 1f : 0f;
         panelGroup.interactable = isOpen;
@@ -89,7 +85,7 @@ public class CraftingUI : MonoBehaviour
     private void UpdatePanelColors()
     {
         Color white = new Color(1f, 1f, 1f, 1f);
-        Color gray = new Color(0.375f, 0.375f, 0.375f, 1f);
+        Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
 
         foreach(CraftingSlotScript slot in trashSlots)
         {
