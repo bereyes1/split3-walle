@@ -24,6 +24,21 @@ public class PlacementPreviewController : MonoBehaviour
     private Vector3 currentPlacementPosition;
     private Quaternion currentPlacementRotation;
 
+    public void DisablePreviewMode()
+    {
+        previewMode = false;
+    }
+
+    public void EnablePreviewMode()
+    {
+        previewMode = true;
+    }
+
+    public void SetPreviewMode()
+    {
+        previewMode = !previewMode;
+    }
+
     private void Start()
     {
         GameObject previewBlockPrefab = previewBlock;
@@ -55,9 +70,10 @@ public class PlacementPreviewController : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.pKey.wasPressedThisFrame)
+        Mouse mouse = Mouse.current;
+        if (mouse != null && mouse.rightButton.wasPressedThisFrame)
         {
-            previewMode = !previewMode;
+            SetPreviewMode();
             Debug.Log("Preview mode: " + previewMode);
         }
 
@@ -69,7 +85,7 @@ public class PlacementPreviewController : MonoBehaviour
 
         UpdatePreview();
 
-        if (hasValidPlacement && Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (hasValidPlacement && mouse != null && mouse.leftButton.wasPressedThisFrame)
         {
             PlaceBlock();
         }
@@ -126,7 +142,7 @@ public class PlacementPreviewController : MonoBehaviour
 
         if (craftingSystem.CurrentBlockCount <= 0)
         {
-            previewMode = false;
+            DisablePreviewMode();
             HidePreview();
         }
     }

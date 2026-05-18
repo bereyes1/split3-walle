@@ -8760,7 +8760,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -50.2, y: -0, z: 15.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 3.19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8782,7 +8782,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 33f1be0792366ac49ac64a88abd68210, type: 2}
   - {fileID: 11400000, guid: fd27c9261df52de4dbb3c0746fb12d4e, type: 2}
   radius: 7.5
-  regionSize: {x: 98.4, y: 102}
+  regionSize: {x: 98.4, y: 98.4}
   rejectionSamples: 26
   raycastOriginHeight: 100
   groundLayers:
@@ -9722,7 +9722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &614115484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14203,7 +14203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4105848772479938, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.83
+      value: -40.62
       objectReference: {fileID: 0}
     - target: {fileID: 4105848772479938, guid: c6e50eec7153f5b45ac3917fb6cfd06a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17404,7 +17404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1103702331
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26353,7 +26353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4306805740919098, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.27938
+      value: -36.62
       objectReference: {fileID: 0}
     - target: {fileID: 4306805740919098, guid: 95aaceaac899f9a47aea3a9744ce9c20, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30859,7 +30859,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '[E] Interact
 
-    [P] Preview Block
+    [RMB] Preview Block
 
     [LMB] Place Block
 
@@ -31698,6 +31698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingUI
   inventory: {fileID: 1810503450}
   craftingSystem: {fileID: 538269574}
+  placementSystem: {fileID: 1497532859}
   inputReader: {fileID: 11400000, guid: 8517ca7e14100e342bd99f9e9bee458f, type: 2}
   closeButton: {fileID: 618464480}
   panelGroup: {fileID: 2019058329}
@@ -32539,7 +32540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2107457065
 RectTransform:
   m_ObjectHideFlags: 0
