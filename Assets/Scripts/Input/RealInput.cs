@@ -158,6 +158,15 @@ namespace NewerInput
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""GridPlacementMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1b2c3d4-e5f6-7890-abcd-ef1234567890"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""HotbarSwitch"",
                     ""type"": ""Button"",
                     ""id"": ""99ea06fc-98b6-44d9-a698-04c3b480294c"",
@@ -407,6 +416,17 @@ namespace NewerInput
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CraftMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2c3d4e5-f6a7-8901-bcde-f12345678901"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GridPlacementMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1034,6 +1054,7 @@ namespace NewerInput
             m_Player_Craft = m_Player.FindAction("Craft", throwIfNotFound: true);
             m_Player_Place = m_Player.FindAction("Place", throwIfNotFound: true);
             m_Player_CraftMenu = m_Player.FindAction("CraftMenu", throwIfNotFound: true);
+            m_Player_GridPlacementMenu = m_Player.FindAction("GridPlacementMenu", throwIfNotFound: true);
             m_Player_HotbarSwitch = m_Player.FindAction("HotbarSwitch", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1135,6 +1156,7 @@ namespace NewerInput
         private readonly InputAction m_Player_Craft;
         private readonly InputAction m_Player_Place;
         private readonly InputAction m_Player_CraftMenu;
+        private readonly InputAction m_Player_GridPlacementMenu;
         private readonly InputAction m_Player_HotbarSwitch;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
@@ -1175,6 +1197,10 @@ namespace NewerInput
             /// Provides access to the underlying input action "Player/CraftMenu".
             /// </summary>
             public InputAction @CraftMenu => m_Wrapper.m_Player_CraftMenu;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/GridPlacementMenu".
+            /// </summary>
+            public InputAction @GridPlacementMenu => m_Wrapper.m_Player_GridPlacementMenu;
             /// <summary>
             /// Provides access to the underlying input action "Player/HotbarSwitch".
             /// </summary>
@@ -1226,6 +1252,9 @@ namespace NewerInput
                 @CraftMenu.started += instance.OnCraftMenu;
                 @CraftMenu.performed += instance.OnCraftMenu;
                 @CraftMenu.canceled += instance.OnCraftMenu;
+                @GridPlacementMenu.started += instance.OnGridPlacementMenu;
+                @GridPlacementMenu.performed += instance.OnGridPlacementMenu;
+                @GridPlacementMenu.canceled += instance.OnGridPlacementMenu;
                 @HotbarSwitch.started += instance.OnHotbarSwitch;
                 @HotbarSwitch.performed += instance.OnHotbarSwitch;
                 @HotbarSwitch.canceled += instance.OnHotbarSwitch;
@@ -1261,6 +1290,9 @@ namespace NewerInput
                 @CraftMenu.started -= instance.OnCraftMenu;
                 @CraftMenu.performed -= instance.OnCraftMenu;
                 @CraftMenu.canceled -= instance.OnCraftMenu;
+                @GridPlacementMenu.started -= instance.OnGridPlacementMenu;
+                @GridPlacementMenu.performed -= instance.OnGridPlacementMenu;
+                @GridPlacementMenu.canceled -= instance.OnGridPlacementMenu;
                 @HotbarSwitch.started -= instance.OnHotbarSwitch;
                 @HotbarSwitch.performed -= instance.OnHotbarSwitch;
                 @HotbarSwitch.canceled -= instance.OnHotbarSwitch;
@@ -1613,6 +1645,13 @@ namespace NewerInput
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnCraftMenu(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "GridPlacementMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnGridPlacementMenu(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "HotbarSwitch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

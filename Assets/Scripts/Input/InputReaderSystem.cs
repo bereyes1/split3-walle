@@ -16,7 +16,6 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
             realInput = new RealInput();
             realInput.Player.SetCallbacks(this);
         }
-
         SetPlayer();
     }
 
@@ -32,7 +31,6 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
         realInput.Player.Enable();
     }
 
-    //disable all input maps
     public void DisableAll()
     {
         inputEnabled = false;
@@ -46,6 +44,7 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     public event Action CraftEvent;
     public event Action PlaceEvent;
     public event Action CraftMenuEvent;
+    public event Action GridPlacementMenuEvent; // NEW
     public event Action<float> HotbarSwitchEvent;
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -86,6 +85,11 @@ public class InputReader : ScriptableObject, RealInput.IPlayerActions
     {
         if (context.phase == InputActionPhase.Performed)
             CraftMenuEvent?.Invoke();
+    }
+    public void OnGridPlacementMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            GridPlacementMenuEvent?.Invoke();
     }
 
     public void OnHotbarSwitch(InputAction.CallbackContext context)

@@ -9,6 +9,7 @@ public class InventoryNewUI : MonoBehaviour
     [SerializeField] private Inventory inventory;
     [SerializeField] private CraftingSystem craftingSystem;
     [SerializeField] private PlacementSystem placementSystem;
+    [SerializeField] private GridPlacementSystem gridPlacementSystem;
     [SerializeField] private TrashSpawner trashSpawner;
     [SerializeField] private InputReader inputReader;
 
@@ -21,7 +22,7 @@ public class InventoryNewUI : MonoBehaviour
     [Header("[== CRAFTING SLOT REFERENCES ==]")]
     [SerializeField] private List<InventorySlotScript> inventorySlots;
     private int inventorySlotCurrent = 0;
-    
+
     public List<InventorySlotScript> InventorySlots => inventorySlots;
     public int InventorySlotCurrent => inventorySlotCurrent;
 
@@ -32,6 +33,7 @@ public class InventoryNewUI : MonoBehaviour
         inventory.OnItemRemoved += HandleInventoryChanged;
         craftingSystem.OnCraftSuccess += UpdateUI;
         placementSystem.OnBlockPlaced += UpdateUI;
+        gridPlacementSystem.OnBlockPlaced += UpdateUI; // NEW
     }
 
     private void OnDisable()
@@ -41,6 +43,7 @@ public class InventoryNewUI : MonoBehaviour
         inventory.OnItemRemoved -= HandleInventoryChanged;
         craftingSystem.OnCraftSuccess -= UpdateUI;
         placementSystem.OnBlockPlaced -= UpdateUI;
+        gridPlacementSystem.OnBlockPlaced -= UpdateUI; // NEW
     }
 
     private void Start()
@@ -66,7 +69,7 @@ public class InventoryNewUI : MonoBehaviour
     private void UpdateUI()
     {
         trashRemainingText.text = $"TRASH: {inventory.TrashCollected} / {trashSpawner.samplePointNum}";
-        foreach(InventorySlotScript slot in inventorySlots)
+        foreach (InventorySlotScript slot in inventorySlots)
         {
             CraftingSlotData data = slot.Data;
             int count = inventory.dictCount(data.trashData);
